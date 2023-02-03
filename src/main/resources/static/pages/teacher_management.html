@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Tables - SB Admin</title>
+        <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
+        <link href="../css/styles.css" rel="stylesheet" />
+        <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="../plugins/elementui/index.css">
+        <link rel="stylesheet" href="../plugins/font-awesome/css/font-awesome.min.css">
+        <link rel="stylesheet" href="../css/style.css">
+        <script src="../js/vue.js"></script>
+        <script src="../js/axios-0.18.0.js"></script>
+        <script src="../plugins/elementui/index.js"></script>
+        <script type="text/javascript" src="../js/jquery.min.js"></script>
+    </head>
+    <body class="sb-nav-fixed">
+    <div id="app">
+    <!-- 新增标签弹层 -->
+
+    <div class="add-form">
+
+        <el-dialog title="添加教师" :visible.sync="dialogFormVisible">
+
+            <el-form ref="dataAddForm"  label-position="right" label-width="100px">
+
+                <el-row>
+
+                    <el-col :span="12">
+
+                        <el-form-item label="教工号" prop="type">
+
+                            <el-input v-model="teacherInfo.teacherId"/>
+
+                        </el-form-item>
+
+                    </el-col>
+                    <el-col :span="12">
+
+                        <el-form-item label="姓名" prop="type">
+
+                            <el-input v-model="teacherInfo.name"/>
+
+                        </el-form-item>
+
+                    </el-col>
+
+                </el-row>
+                <el-row>
+
+                    <el-col :span="12">
+
+                        <el-form-item label="性别" prop="type">
+
+                            <el-input v-model="teacherInfo.sex"/>
+
+                        </el-form-item>
+
+                    </el-col>
+                    <el-col :span="12">
+
+                        <el-form-item label="密码" prop="type">
+
+                            <el-input v-model="teacherInfo.password"/>
+
+                        </el-form-item>
+
+                    </el-col>
+
+                </el-row>
+
+            </el-form>
+
+            <div slot="footer" class="dialog-footer">
+
+                <el-button @click="cancel()">取消</el-button>
+
+                <el-button type="primary" @click="addTeacher()">确定</el-button>
+
+            </div>
+
+        </el-dialog>
+
+    </div>
+        <!-- 编辑 -->
+
+        <div class="add-form">
+
+            <el-dialog title="修改教师信息" :visible.sync="dialogFormVisible4Edit">
+
+                <el-form ref="dataAddForm"  label-position="right" label-width="100px">
+
+                    <el-row>
+
+                        <el-col :span="12">
+
+                            <el-form-item label="学号" prop="type">
+
+                                <input v-model="updateTeacherInfo.teacherId" />
+
+                            </el-form-item>
+
+                        </el-col>
+                        <el-col :span="12">
+
+                            <el-form-item label="姓名" prop="type">
+
+                                <input v-model="updateTeacherInfo.name"/>
+
+                            </el-form-item>
+
+                        </el-col>
+
+                    </el-row>
+                    <el-row>
+
+                        <el-col :span="12">
+
+                            <el-form-item label="性别" prop="type">
+
+                                <input v-model="updateTeacherInfo.sex"/>
+
+                            </el-form-item>
+
+                        </el-col>
+                        <el-col :span="12">
+
+                            <el-form-item label="专业" prop="type">
+
+                                <input v-model="updateTeacherInfo.password"/>
+
+                            </el-form-item>
+
+                        </el-col>
+
+                    </el-row>
+
+
+
+                </el-form>
+
+                <div slot="footer" class="dialog-footer">
+
+                    <el-button @click="cancel()">取消</el-button>
+
+                    <el-button type="primary" @click="updateTeacher()">确定</el-button>
+
+                </div>
+
+            </el-dialog>
+
+        </div>
+        <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+            <!-- Navbar Brand-->
+            <a class="navbar-brand ps-3" href="index.html">Start Bootstrap</a>
+            <!-- Sidebar Toggle-->
+            <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
+            <!-- Navbar Search-->
+            <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
+                <div class="input-group">
+                    <input v-model="teacherId" class="form-control" type="text" placeholder="输入教师ID以搜索..." aria-label="Search for..." aria-describedby="btnNavbarSearch" />
+                    <button @click="search()" class="btn btn-primary" id="btnNavbarSearch" type="button"><i class="fas fa-search"></i></button>
+                </div>
+            </form>
+            <!-- Navbar-->
+            <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="#!">Settings</a></li>
+                        <li><a class="dropdown-item" href="#!">Activity Log</a></li>
+                        <li><hr class="dropdown-divider" /></li>
+                        <li><a class="dropdown-item" href="#!">Logout</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+        <div id="layoutSidenav">
+            <div id="layoutSidenav_nav">
+                <nav class="sb-sidenav accordion sb-sidenav-light" id="sidenavAccordion">
+                    <div class="sb-sidenav-menu">
+                        <div class="nav">
+                            <div class="sb-sidenav-menu-heading">Core</div>
+                            <a class="nav-link" href="index.html">
+                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                                Dashboard
+                            </a>
+                            <div class="sb-sidenav-menu-heading">Interface</div>
+                            <a class="nav-link" href="news_management.html">
+                                <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                                学校新闻
+                            </a>
+                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+                                <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                                课程管理
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                            </a>
+                            <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav">
+                                    <a class="nav-link" href="curricula_management.html">必修课程管理</a>
+                                    <a class="nav-link" href="elective_curricula_management.html">选修课程管理</a>
+                                </nav>
+                            </div>
+                            <a class="nav-link" href="student_management.html">
+                                <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
+                                学生管理
+                            </a>
+
+                            <a class="nav-link" href="teacher_management.html">
+                                <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
+                                教师管理
+
+                            </a>
+
+                        </div>
+                    </div>
+                    <div class="sb-sidenav-footer">
+                        <div class="small">Logged in as:</div>
+                        Start Bootstrap
+                    </div>
+                </nav>
+            </div>
+            <div id="layoutSidenav_content">
+                <main>
+                    <div class="container-fluid px-4">
+                        <h1 class="mt-4">教师管理</h1>
+                        <ol class="breadcrumb mb-4">
+                            <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+                            <li class="breadcrumb-item active">Tables</li>
+                        </ol>
+                        <div class="card mb-4">
+                            <div class="card-body">
+                                DataTables is a third party plugin that is used to generate the demo table below. For more information about DataTables, please visit the
+                                <a target="_blank" href="https://datatables.net/">official DataTables documentation</a>
+                                .
+                            </div>
+                        </div>
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                <a class="btn btn-primary"  @click="handleAdd()">添加</a>
+                            </div>
+                            <div class="card-body">
+                                <table id="datatablesSimple">
+                                    <thead>
+                                        <tr>
+                                            <th>教师ID</th>
+                                            <th>姓名</th>
+                                            <th>性别</th>
+                                            <th>密码</th>
+                                            <th>操作</th>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr >
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                        <tr v-for="(item,index) in teachers ">
+                                            <td>{{item.teacherId}}</td>
+                                            <td>{{item.name}}</td>
+                                            <td>{{item.sex}}</td>
+                                            <td>{{item.password}}</td>
+                                            <td><el-button type="primary" size="mini" @click="handleUpdateTeacher(item.teacherId,item.name,item.sex,item.password)">修改</el-button> <el-button type="danger" size="mini" @click="deleteTeacher(item.teacherId)">删除</el-button></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <!--分页组件-->
+                                <div class="pagination-container">
+
+                                    <el-pagination
+                                            class="pagiantion"
+
+                                            @current-change="handleCurrentChange"
+
+                                            :current-page="pagination.currentPage"
+
+                                            :page-size="pagination.pageSize"
+
+                                            layout="total, prev, pager, next, jumper"
+
+                                            :total="pagination.total">
+
+                                    </el-pagination>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+                <footer class="py-4 bg-light mt-auto">
+                    <div class="container-fluid px-4">
+                        <div class="d-flex align-items-center justify-content-between small">
+                            <div class="text-muted">Copyright &copy; Your Website 2022</div>
+                            <div>
+                                <a href="#">Privacy Policy</a>
+                                &middot;
+                                <a href="#">Terms &amp; Conditions</a>
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+            </div>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+        <script src="../js/scripts.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
+        <script src="../js/datatables-simple-demo.js"></script>
+        <script>
+
+            var app=new Vue({
+                el:"#app",
+                data:{
+                    administrator:{},
+                    dialogFormVisible: false,
+                    dialogFormVisible4Edit:false,
+                    teachers:null,
+                    teacherInfo:{},
+                    teacherId:null,
+                    updateTeacherInfo:{},
+                    verifyState:null,
+                    pagination: {//分页相关模型数据
+                        currentPage: 1,//当前页码
+                        pageSize:5,//每页显示的记录数
+                        total:0,//总记录数
+                    }
+
+
+                },
+             async   created() {
+                    const administrator=localStorage.getItem("administratorInfo");
+                    this.administrator.name=JSON.parse(administrator).name;
+                    this.administrator.password=JSON.parse(administrator).password;
+                    const that = this;
+            await        axios.post("http://localhost/administrators/verify",this.administrator).then((res)=>{
+                         that.verifyState=res.data.msg;
+
+                    });
+
+
+                    if(this.verifyState=="验证成功"){
+                        axios.get("http://localhost/administrators/getAllTeacher/"+that.pagination.currentPage+"/"+that.pagination.pageSize).then((res)=>{
+                            that.teachers=res.data.data.records;
+                            that.pagination.pageSize = res.data.data.size;
+                            that.pagination.currentPage = res.data.data.current;
+                            that.pagination.total = res.data.data.total;
+                        });
+                    }else{
+                        that.$message.error("管理员身份验证失败");
+                    }
+
+
+                },
+                methods:{
+                    handleAdd(){
+                        this.teacherInfo.password="1234";
+                        this.dialogFormVisible = true;
+                    },
+                  async  addTeacher(){
+                      const that = this;
+                      await axios.post("http://localhost/administrators/verify",this.administrator).then((res)=>{
+                          that.verifyState=res.data.msg;
+                      });
+
+                      if(this.verifyState=="验证成功"){
+                          axios.post("http://localhost/administrators/addTeacher",that.teacherInfo).then((res)=>{
+                              if(res.data.msg=="添加成功"){
+                                  that.$message.success("添加成功");
+                                  location.reload();
+                              }else {
+                                  that.$message.error("添加失败");
+
+                              }
+                          });
+                      }else{
+                          that.$message.error("管理员身份验证失败");
+                      }
+                    },
+
+              async      search(){
+                        const that = this;
+                    await    axios.post("http://localhost/administrators/verify",this.administrator).then((res)=>{
+                            that.verifyState=res.data.msg;
+                        });
+
+                        if(this.verifyState=="验证成功"){
+                            axios.get("http://localhost/administrators/getTeacherById/"+that.pagination.currentPage+"/"+that.pagination.pageSize+"/"+that.teacherId).then((res)=>{
+                                that.teachers=res.data.data.records;
+                                that.pagination.pageSize = res.data.data.size;
+                                that.pagination.currentPage = res.data.data.current;
+                                that.pagination.total = res.data.data.total;
+                            });
+                        }else{
+                            that.$message.error("管理员身份验证失败");
+                        }
+
+                    },
+
+                    handleUpdateTeacher(teacherId,name,sex,password){
+                        this.updateTeacherInfo.teacherId=teacherId;
+                        this.updateTeacherInfo.name=name;
+                        this.updateTeacherInfo.sex=sex;
+                        this.updateTeacherInfo.password=password;
+                        this.dialogFormVisible4Edit = true;
+                    },
+                  async updateTeacher(){
+                        const that = this;
+                  await axios.post("http://localhost/administrators/verify",this.administrator).then((res)=>{
+                            that.verifyState=res.data.msg;
+                        });
+
+                        if(this.verifyState=="验证成功"){
+                            axios.put("http://localhost/administrators/updateTeacher/",that.updateTeacherInfo).then((res)=>{
+                                if(res.data.msg=="修改成功"){
+                                    that.$message.success("修改成功");
+                                    location.reload();
+                                }else {
+                                    that.$message.error("修改失败");
+                                    location.reload();
+                                }
+                            });
+                        }else{
+                            that.$message.error("管理员身份验证失败");
+                        }
+                    },
+
+                async    deleteTeacher(teacherId){
+                        const that = this;
+                        await axios.post("http://localhost/administrators/verify",this.administrator).then((res)=>{
+                            that.verifyState=res.data.msg;
+                        });
+
+                        if(this.verifyState=="验证成功"){
+                            axios.delete("http://localhost/administrators/deleteTeacher/"+teacherId).then((res)=>{
+                                if(res.data.msg=="删除成功"){
+                                    that.$message.success("删除成功");
+                                    location.reload();
+                                }else {
+                                    that.$message.error("删除失败");
+
+                                }
+                            });
+                        }else{
+                            that.$message.error("管理员身份验证失败");
+                        }
+
+
+                    },
+
+                    cancel(){
+                        this.dialogFormVisible = false;
+                        this.dialogFormVisible4Edit = false;
+                        this.$message.info("当前操作取消");
+                    },
+               async     handleCurrentChange(currentPage) {
+                        //修改页码值为当前选中的页码值
+                        this.pagination.currentPage = currentPage;
+                        const that = this;
+                   await     axios.post("http://localhost/administrators/verify",this.administrator).then((res)=>{
+                            that.verifyState=res.data.msg;
+
+                        });
+
+
+                        if(this.verifyState=="验证成功"){
+                            axios.get("http://localhost/administrators/getAllTeacher/"+that.pagination.currentPage+"/"+that.pagination.pageSize).then((res)=>{
+                                that.teachers=res.data.data.records;
+                                that.pagination.pageSize = res.data.data.size;
+                                that.pagination.currentPage = res.data.data.current;
+                                that.pagination.total = res.data.data.total;
+
+                            });
+                        }else{
+                            that.$message.error("管理员身份验证失败");
+                        }
+
+
+                    },
+
+
+
+                }
+            })
+
+        </script>
+    </div>
+    </body>
+</html>
