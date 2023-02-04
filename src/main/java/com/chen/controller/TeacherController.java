@@ -1,10 +1,7 @@
 package com.chen.controller;
 
 import com.chen.controller.utils.Resource;
-import com.chen.domain.Achievement;
-import com.chen.domain.Curricula;
-import com.chen.domain.ElectiveCurricula;
-import com.chen.domain.Teacher;
+import com.chen.domain.*;
 import com.chen.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -24,6 +21,8 @@ public class TeacherController {
     CurriculaService curriculaService;
     @Autowired
     AchievementService achievementService;
+    @Autowired
+    HomeworkReleaseService homeworkReleaseService;
     @GetMapping("/login/{teacherId}/{password}")
     public Resource getByIdAndPassword(@PathVariable String teacherId, @PathVariable String password){
         Teacher teacher=teacherService.login(teacherId,password);
@@ -71,4 +70,10 @@ public class TeacherController {
             return new Resource(achievementService.updateScore(achievement)>0,"修改成功");
 
     }
+    @PostMapping("/addHomeWork")
+    public Resource addHomeWork(@RequestBody HomeworkRelease homeworkRelease){
+        homeworkReleaseService.save(homeworkRelease);
+        return new Resource(true,"作业发布成功");
+    }
+
 }

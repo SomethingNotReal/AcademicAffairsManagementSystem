@@ -12,6 +12,7 @@
         <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="../plugins/elementui/index.css">
         <link rel="stylesheet" href="../plugins/font-awesome/css/font-awesome.min.css">
+        <link rel="stylesheet" href="../css/style.css">
         <script src="../js/vue.js"></script>
         <script src="../js/axios-0.18.0.js"></script>
         <script src="../plugins/elementui/index.js"></script>
@@ -27,8 +28,8 @@
             <!-- Navbar Search-->
             <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
                 <div class="input-group">
-                    <input class="form-control" type="text" placeholder="Search for..." aria-label="Search for..." aria-describedby="btnNavbarSearch" />
-                    <button class="btn btn-primary" id="btnNavbarSearch" type="button"><i class="fas fa-search"></i></button>
+                    <input v-model="id" class="form-control" type="text" placeholder="输入学生Id搜索..." aria-label="Search for..." aria-describedby="btnNavbarSearch" />
+                    <button @click="search()" class="btn btn-primary" id="btnNavbarSearch" type="button"><i class="fas fa-search"></i></button>
                 </div>
             </form>
             <!-- Navbar-->
@@ -88,18 +89,7 @@
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid px-4">
-                        <h1 class="mt-4">我的课程</h1>
-                        <ol class="breadcrumb mb-4">
-                            <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
-                            <li class="breadcrumb-item active">Tables</li>
-                        </ol>
-                        <div class="card mb-4">
-                            <div class="card-body">
-                                DataTables is a third party plugin that is used to generate the demo table below. For more information about DataTables, please visit the
-                                <a target="_blank" href="https://datatables.net/">official DataTables documentation</a>
-                                .
-                            </div>
-                        </div>
+                        <h1 class="mt-4">{{curriculaName}}发布的作业</h1>
                         <div class="card mb-4">
                             <div class="card-header">
                                 <i class="fas fa-table me-1"></i>
@@ -109,11 +99,8 @@
                                 <table id="datatablesSimple">
                                     <thead>
                                         <tr>
-                                            <th>课程ID</th>
-                                            <th>课程名称</th>
-                                            <th>教师</th>
-                                            <th>开始时间</th>
-                                            <th>结束时间</th>
+                                            <th>标题</th>
+                                            <th>截止时间</th>
                                             <th>操作</th>
                                         </tr>
                                     </thead>
@@ -122,17 +109,11 @@
                                         <td></td>
                                         <td></td>
                                         <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
                                     </tr>
-                                        <tr v-for="(item,index) in curriculas ">
-                                            <td>{{item.curriculaId}}</td>
-                                            <td>{{item.curriculaName}}</td>
-                                            <td>{{item.teacherName}}</td>
-                                            <td>{{item.startTime}}</td>
+                                        <tr v-for="(item,index) in homeworkRelease ">
+                                            <td><a href="#" @click="getHomeworkReleaseFile(item.homeworkFileName)">{{item.title}}</a></td>
                                             <td>{{item.endTime}}</td>
-                                            <td><el-button type="primary" size="mini" @click="toHomeworkRelease(item.curriculaId,item.teacherId)">查看作业</el-button></td>
+                                            <td><el-button type="primary" size="mini" @click="">提交作业</el-button></td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -158,42 +139,63 @@
         <script src="../js/scripts.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
         <script src="../js/datatables-simple-demo.js"></script>
-        <script>
 
-            var app=new Vue({
-                el:"#app",
-                data:{
-                    studentId:null,
-                    studentName:null,
-                    studentClass:null,
-                    curriculas:null
-                },
-              async  created() {
-                    const student=localStorage.getItem("studentInfo");
-                    this.studentId=JSON.parse(student).studentId;
-                    this.studentName=JSON.parse(student).name;
-                    const that = this;
-                    await axios.get("http://localhost/students/"+that.studentId).then((res)=>{
-                        that.studentClass=res.data.data;
-                    });
-                    const url = "http://localhost/students/get/MyCurricula/" + that.studentId + "/" + that.studentClass;
-                    axios.get(url).then((res)=>{
-                        that.curriculas=res.data.data;
-                    });
-
-                },
-                methods:{
-                    toHomeworkRelease(curriculaId,teacherId){
-                        window.sessionStorage.setItem("curriculaId",curriculaId);
-                        window.sessionStorage.setItem("teacherId",teacherId);
-                        window.location.href="homework_release_student.html";
-                    }
-
-
-                }
-            })
-
-        </script>
     </div>
     </body>
+    <script>
+
+        var app=new Vue({
+            el:"#app",
+            data:{
+                studentId:null,
+                studentName:null,
+                homeworkRelease:null,
+                curriculaName:null,
+                url:null
+
+            },
+            created() {
+                const student=localStorage.getItem("studentInfo");
+                this.studentId=JSON.parse(student).studentId;
+                this.studentName=JSON.parse(student).name;
+                const  that=this;
+                const curriculaId=window.sessionStorage.getItem("curriculaId");
+                const teacherId=window.sessionStorage.getItem("teacherId");
+                axios.get("http://localhost/homeworkReleases/getReleaseHomeworkByCurriculaIdAndTeacherId/"+curriculaId+"/"+teacherId).then((res)=>{
+                    that.homeworkRelease=res.data.data;
+                    that.curriculaName=res.data.data[0].curriculaName;
+                });
+            },
+            methods:{
+
+                cancel(){
+                    this.dialogFormVisible = false;
+                    this.$message.info("当前操作取消");
+                },
+                getHomeworkReleaseFile(homeworkFileName){
+                    window.open("http://localhost/files/downloadHomeworkRelease/"+homeworkFileName)
+
+                },
+                deleteHomeworkRelease(homeworkFileName,curriculaId,teacherId){
+                    const  that=this;
+                    axios.delete("http://localhost/files/deleteFile/"+homeworkFileName).then((res)=>{
+                        if(res.data.msg=="删除成功"){
+                            this.$message.success("删除成功")
+                        }else {
+                            this.$message.error("删除失败")
+                        }
+                    });
+                    axios.delete("http://localhost/homeworkReleases/deleteReleaseHomeworkByCurriculaIdAndTeacherId/"+curriculaId+"/"+teacherId).then((res)=>{
+                     if(res.data.msg=="删除成功"){
+                         this.$message.success("删除成功")
+                     }else {
+                         this.$message.error("删除失败")
+                     }
+                    });
+                }
+
+            }
+        })
+
+    </script>
 </html>
