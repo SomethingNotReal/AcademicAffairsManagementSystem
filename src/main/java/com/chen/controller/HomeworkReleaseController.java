@@ -1,7 +1,6 @@
 package com.chen.controller;
 
 import com.chen.controller.utils.Resource;
-import com.chen.domain.HomeworkRelease;
 import com.chen.service.HomeworkReleaseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

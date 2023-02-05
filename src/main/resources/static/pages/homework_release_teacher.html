@@ -95,7 +95,7 @@
                                         <tr v-for="(item,index) in homeworkRelease ">
                                             <td><a href="#" @click="getHomeworkReleaseFile(item.homeworkFileName)">{{item.title}}</a></td>
                                             <td>{{item.endTime}}</td>
-                                            <td><el-button type="primary" size="mini" @click="">查看学生交作业情况</el-button><el-button type="danger" size="mini" @click="deleteHomeworkRelease(item.homeworkFileName,item.curriculaId,item.teacherId)">删除</el-button></td>
+                                            <td><el-button type="primary" size="mini" @click="toHomeworkSubmitInfo()">查看学生交作业情况</el-button><el-button type="danger" size="mini" @click="deleteHomeworkRelease(item.homeworkFileName,item.curriculaId,item.teacherId)">删除</el-button></td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -129,11 +129,14 @@
         var app=new Vue({
             el:"#app",
             data:{
+                id:null,
                 teacherId:null,
                 teacherName:null,
                 homeworkRelease:null,
                 curriculaName:null,
-                url:null
+                url:null,
+                deleteList:null,
+                size:null,
 
             },
             created() {
@@ -158,9 +161,9 @@
                     window.open("http://localhost/files/downloadHomeworkRelease/"+homeworkFileName)
 
                 },
-                deleteHomeworkRelease(homeworkFileName,curriculaId,teacherId){
+           async     deleteHomeworkRelease(homeworkFileName,curriculaId,teacherId){
                     const  that=this;
-                    axios.delete("http://localhost/files/deleteFile/"+homeworkFileName).then((res)=>{
+                    axios.delete("http://localhost/files/deleteHomeworkRelease/"+homeworkFileName).then((res)=>{
                         if(res.data.msg=="删除成功"){
                             this.$message.success("删除成功")
                         }else {
@@ -170,11 +173,39 @@
                     axios.delete("http://localhost/homeworkReleases/deleteReleaseHomeworkByCurriculaIdAndTeacherIdAndFileName/"+curriculaId+"/"+teacherId+"/"+homeworkFileName).then((res)=>{
                      if(res.data.msg=="删除成功"){
                          this.$message.success("删除成功")
-                         location.reload();
                      }else {
                          this.$message.error("删除失败")
                      }
                     });
+               await    axios.get("http://localhost/homeworkSubmits/getSubmitHomeworkByCurriculaIdAndTeacherId/"+curriculaId+"/"+teacherId).then((res)=>{
+                   that.deleteList=res.data.data;
+                   that.size=res.data.size;
+               });
+              await this.deleteSubmitHomeworks();
+                    axios.delete("http://localhost/homeworkSubmits/deleteSubmitHomeworkByCurriculaIdAndTeacherIdAndFileName/"+curriculaId+"/"+teacherId+"/"+homeworkFileName).then((res)=>{
+                        if(res.data.msg=="删除成功"){
+                            this.$message.success("删除成功")
+                             location.reload();
+                        }else {
+                            this.$message.error("删除失败")
+                        }
+                    });
+
+                },
+                toHomeworkSubmitInfo(){
+                    window.location.href="homework_submit_info.html";
+                },
+                deleteSubmitHomeworks(){
+                    const that=this;
+                    for (let i=0; i<this.size; ++i){
+                        axios.delete("http://localhost/files/deleteHomeworkSubmit/"+that.deleteList[i].name).then((res)=>{
+                            if(res.data.msg=="删除成功"){
+                                this.$message.success("删除成功")
+                            }else {
+                                this.$message.error("删除失败")
+                            }
+                        });
+                    }
                 }
 
             }

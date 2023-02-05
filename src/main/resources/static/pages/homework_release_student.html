@@ -20,6 +20,20 @@
     </head>
     <body class="sb-nav-fixed">
     <div id="app">
+        <!-- 新增标签弹层 -->
+
+        <div class="add-form">
+            <form action="/files/submitHomework" enctype="multipart/form-data" method="post">
+
+                <el-dialog title="提交作业" :visible.sync="dialogFormVisible">
+                    <form action="/files/submitHomework" enctype="multipart/form-data" method="post">
+                        <input type="file" name="file">
+                        <input type="submit" value="上传" @click="submitHomework()">
+                    </form>
+                </el-dialog>
+            </form>
+
+        </div>
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
             <!-- Navbar Brand-->
             <a class="navbar-brand ps-3" href="index.html">Start Bootstrap</a>
@@ -99,7 +113,9 @@
                                 <table id="datatablesSimple">
                                     <thead>
                                         <tr>
-                                            <th>标题</th>
+                                            <th>作业详情</th>
+                                            <th>我提交的作业</th>
+                                            <th>状态</th>
                                             <th>截止时间</th>
                                             <th>操作</th>
                                         </tr>
@@ -109,11 +125,15 @@
                                         <td></td>
                                         <td></td>
                                         <td></td>
+                                        <td></td>
+                                        <td></td>
                                     </tr>
                                         <tr v-for="(item,index) in homeworkRelease ">
-                                            <td><a href="#" @click="getHomeworkReleaseFile(item.homeworkFileName)">{{item.title}}</a></td>
+                                            <td><a href="#" @click="getHomeworkReleaseFile(item.releaseName)">{{item.releaseName}}</a></td>
+                                            <td><a href="#" @click="getHomeworkSubmitFile(item.name)">{{item.name}}</a></td>
+                                            <td>{{item.state}}</td>
                                             <td>{{item.endTime}}</td>
-                                            <td><el-button type="primary" size="mini" @click="">提交作业</el-button></td>
+                                            <td><el-button type="primary" size="mini" @click="handleSubmitHomework(item.curriculaId,item.curriculaName,item.teacherId,item.teacherName)">提交作业</el-button></td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -151,6 +171,8 @@
                 studentName:null,
                 homeworkRelease:null,
                 curriculaName:null,
+                homework: {},
+                dialogFormVisible:false,
                 url:null
 
             },
@@ -160,9 +182,9 @@
                 this.studentName=JSON.parse(student).name;
                 const  that=this;
                 const curriculaId=window.sessionStorage.getItem("curriculaId");
-                const teacherId=window.sessionStorage.getItem("teacherId");
-                axios.get("http://localhost/homeworkReleases/getReleaseHomeworkByCurriculaIdAndTeacherId/"+curriculaId+"/"+teacherId).then((res)=>{
+                axios.get("http://localhost/homeworkSubmits/getReleaseHomeworkByCurriculaIdAndStudentId/"+curriculaId+"/"+that.studentId).then((res)=>{
                     that.homeworkRelease=res.data.data;
+                    console.log("数据时："+JSON.stringify(that.homeworkRelease));
                     that.curriculaName=res.data.data[0].curriculaName;
                 });
             },
@@ -176,23 +198,33 @@
                     window.open("http://localhost/files/downloadHomeworkRelease/"+homeworkFileName)
 
                 },
-                deleteHomeworkRelease(homeworkFileName,curriculaId,teacherId){
-                    const  that=this;
-                    axios.delete("http://localhost/files/deleteFile/"+homeworkFileName).then((res)=>{
-                        if(res.data.msg=="删除成功"){
-                            this.$message.success("删除成功")
+                getHomeworkSubmitFile(name){
+                    window.open("http://localhost/files/downloadHomeworkSubmit/"+name)
+
+                },
+                handleSubmitHomework(curriculaId,curriculaName,teacherId,teacherName){
+                    this.homework.studentId=this.studentId;
+                    this.homework.studentName=this.studentName;
+                    this.homework.teacherId=teacherId;
+                    this.homework.teacherName=teacherName
+                    this.homework.curriculaId=curriculaId;
+                    this.homework.curriculaName=curriculaName;
+                    this.dialogFormVisible = true;
+                },
+                submitHomework(){
+                    const that=this;
+                    axios.post("http://localhost/files/submitHomeworkInDataBase",this.homework).then((res)=>{
+                        if(res.data.msg=="作业发布成功"){
+                            this.$message.success("作业发布成功");
+                            this.dialogFormVisible = false;
                         }else {
-                            this.$message.error("删除失败")
+                            this.$message.error("作业发布失败");
+                            this.dialogFormVisible = false;
                         }
+
                     });
-                    axios.delete("http://localhost/homeworkReleases/deleteReleaseHomeworkByCurriculaIdAndTeacherId/"+curriculaId+"/"+teacherId).then((res)=>{
-                     if(res.data.msg=="删除成功"){
-                         this.$message.success("删除成功")
-                     }else {
-                         this.$message.error("删除失败")
-                     }
-                    });
-                }
+                },
+
 
             }
         })

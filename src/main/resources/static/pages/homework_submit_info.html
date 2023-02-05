@@ -9,9 +9,10 @@
         <title>Tables - SB Admin</title>
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
         <link href="../css/styles.css" rel="stylesheet" />
+        <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="../plugins/elementui/index.css">
         <link rel="stylesheet" href="../plugins/font-awesome/css/font-awesome.min.css">
-        <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="../css/style.css">
         <script src="../js/vue.js"></script>
         <script src="../js/axios-0.18.0.js"></script>
         <script src="../plugins/elementui/index.js"></script>
@@ -19,28 +20,6 @@
     </head>
     <body class="sb-nav-fixed">
     <div id="app">
-        <!-- 新增标签弹层 -->
-
-        <div class="add-form">
-            <form action="/files/addHomework" enctype="multipart/form-data" method="post">
-
-            <el-dialog title="发布作业" :visible.sync="dialogFormVisible">
-                <form action="/files/addHomework" enctype="multipart/form-data" method="post">
-                            <input type="file" name="file">
-                            <input type="submit" value="上传" @click="addHomework()">
-                </form>
-            <p></p>
-                <span>标题</span>
-                <input type="text" v-model="homework.title">
-                <p></p>
-                <span>截止时间</span>
-                <input type="text" v-model="homework.endTime">
-
-
-            </el-dialog>
-            </form>
-
-        </div>
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
             <!-- Navbar Brand-->
             <a class="navbar-brand ps-3" href="index.html">Start Bootstrap</a>
@@ -49,8 +28,8 @@
             <!-- Navbar Search-->
             <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
                 <div class="input-group">
-                    <input class="form-control" type="text" placeholder="Search for..." aria-label="Search for..." aria-describedby="btnNavbarSearch" />
-                    <button class="btn btn-primary" id="btnNavbarSearch" type="button"><i class="fas fa-search"></i></button>
+                    <input v-model="id" class="form-control" type="text" placeholder="输入学生Id搜索..." aria-label="Search for..." aria-describedby="btnNavbarSearch" />
+                    <button @click="search()" class="btn btn-primary" id="btnNavbarSearch" type="button"><i class="fas fa-search"></i></button>
                 </div>
             </form>
             <!-- Navbar-->
@@ -80,7 +59,7 @@
                                 <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
                                 查看我教学的课程
                             </a>
-                            <div class="sb-sidenav-menu-heading">Interface</div>
+
                         </div>
                     </div>
                     <div class="sb-sidenav-footer">
@@ -92,7 +71,7 @@
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid px-4">
-                        <h1 class="mt-4">我所教授的课程</h1>
+                        <h1 class="mt-4">{{curriculaName}}发布的作业</h1>
                         <div class="card mb-4">
                             <div class="card-header">
                                 <i class="fas fa-table me-1"></i>
@@ -102,14 +81,12 @@
                                 <table id="datatablesSimple">
                                     <thead>
                                         <tr>
-                                            <th>课程ID</th>
-                                            <th>课程名称</th>
-                                            <th>教师</th>
-                                            <th>开始时间</th>
-                                            <th>结束时间</th>
-                                            <th>查看学生</th>
-                                            <th>发布作业</th>
-                                            <th>查看作业</th>
+                                            <th>作业详情</th>
+                                            <th>学号</th>
+                                            <th>姓名</th>
+                                            <th>学生提交的作业</th>
+                                            <th>状态</th>
+                                            <th>截止时间</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -120,19 +97,16 @@
                                         <td></td>
                                         <td></td>
                                         <td></td>
-                                        <td></td>
-                                        <td></td>
+
                                     </tr>
-                                        <tr v-for="(item,index) in curriculas ">
-                                            <td>{{item.curriculaId}}</td>
-                                            <td>{{item.curriculaName}}</td>
-                                            <td>{{item.teacherName}}</td>
-                                            <td>{{item.startTime}}</td>
-                                            <td>{{item.endTime}}</td>
-                                            <td><button class="btn btn-primary" @click="toMyStudents(item.curriculaId)">查看学生</button></td>
-                                            <td><button class="btn btn-primary" @click="handleAdd(item.curriculaId,item.curriculaName)">发布作业</button></td>
-                                            <td><button class="btn btn-primary" @click="toHomeworkRelease(item.curriculaId)">查看作业</button></td>
-                                        </tr>
+                                    <tr v-for="(item,index) in homeworkSubmit ">
+                                        <td><a href="#" @click="getHomeworkReleaseFile(item.releaseName)">{{item.releaseName}}</a></td>
+                                        <td>{{item.studentId}}</td>
+                                        <td>{{item.studentName}}</td>
+                                        <td><a href="#" @click="getHomeworkSubmitFile(item.name)">{{item.name}}</a></td>
+                                        <td>{{item.state}}</td>
+                                        <td>{{item.endTime}}</td>
+                                    </tr>
                                     </tbody>
                                 </table>
                             </div>
@@ -157,66 +131,72 @@
         <script src="../js/scripts.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
         <script src="../js/datatables-simple-demo.js"></script>
-        <script>
 
-            var app=new Vue({
-                el:"#app",
-                data:{
-                    dialogFormVisible: false,
-                    teacherId:null,
-                    teacherName:null,
-                    curriculas:null,
-                    homework:{}
-                },
-              async  created() {
-                  const teacher=localStorage.getItem("teacherInfo");
-                  this.teacherId=JSON.parse(teacher).teacherId;
-                    const that = this;
-                    await axios.get("http://localhost/teachers/"+that.teacherId).then((res)=>{
-                        that.curriculas=res.data.data;
-                        that.teacherName=res.data.data[0].teacherName;
-                    });
-                },
-                methods:{
-                    toMyStudents(curriculaId){
-                       window.sessionStorage.setItem("curriculaId",curriculaId);
-                       location.replace("my_students.html");
-                    },
-                    handleAdd(curriculaId,curriculaName){
-                        this.homework.teacherId=this.teacherId;
-                        this.homework.teacherName=this.teacherName;
-                        this.homework.curriculaId=curriculaId;
-                        this.homework.curriculaName=curriculaName;
-                        this.dialogFormVisible = true;
-                    },
-                    cancel(){
-                        this.dialogFormVisible = false;
-                        this.$message.info("当前操作取消");
-                    },
-                    addHomework(){
-                        const that=this;
-                        axios.post("http://localhost/files/addHomeworkInDataBase",this.homework).then((res)=>{
-                            if(res.data.msg=="作业发布成功"){
-                                this.$message.success("作业发布成功");
-                                this.dialogFormVisible = false;
-                            }else {
-                                this.$message.error("作业发布失败");
-                                this.dialogFormVisible = false;
-                            }
-
-                        });
-                    },
-                    toHomeworkRelease(curriculaId){
-                        window.sessionStorage.setItem("curriculaId",curriculaId);
-                        window.sessionStorage.setItem("teacherId",this.teacherId);
-                        window.location.href="homework_release_teacher.html";
-                    }
-
-
-                }
-            })
-
-        </script>
     </div>
     </body>
+    <script>
+
+        var app=new Vue({
+            el:"#app",
+            data:{
+                teacherId:null,
+                teacherName:null,
+                homeworkSubmit:null,
+                curriculaName:null,
+                url:null
+            },
+            created() {
+                const  that=this;
+                const teacher=localStorage.getItem("teacherInfo");
+                this.teacherId=JSON.parse(teacher).teacherId;
+                this.teacherName=JSON.parse(teacher).name;
+                const curriculaId=window.sessionStorage.getItem("curriculaId");
+                const teacherId=window.sessionStorage.getItem("teacherId");
+                axios.get("http://localhost/homeworkSubmits/getSubmitHomeworkByCurriculaIdAndTeacherId/"+curriculaId+"/"+teacherId).then((res)=>{
+                    that.homeworkSubmit=res.data.data;
+                    that.curriculaName=res.data.data[0].curriculaName;
+                });
+            },
+            methods:{
+
+                getHomeworkReleaseFile(homeworkFileName){
+                    window.open("http://localhost/files/downloadHomeworkRelease/"+homeworkFileName)
+
+                },
+
+                getHomeworkSubmitFile(name){
+                    window.open("http://localhost/files/downloadHomeworkSubmit/"+name)
+
+                },
+                deleteHomeworkRelease(homeworkFileName,curriculaId,teacherId){
+                    const  that=this;
+                    axios.delete("http://localhost/files/deleteHomeworkRelease/"+homeworkFileName).then((res)=>{
+                        if(res.data.msg=="删除成功"){
+                            this.$message.success("删除成功")
+                        }else {
+                            this.$message.error("删除失败")
+                        }
+                    });
+                    axios.delete("http://localhost/homeworkReleases/deleteReleaseHomeworkByCurriculaIdAndTeacherIdAndFileName/"+curriculaId+"/"+teacherId+"/"+homeworkFileName).then((res)=>{
+                     if(res.data.msg=="删除成功"){
+                         this.$message.success("删除成功")
+                         location.reload();
+                     }else {
+                         this.$message.error("删除失败")
+                     }
+                    });
+                    axios.delete("http://localhost/homeworkSubmits/deleteSubmitHomeworkByCurriculaIdAndTeacherIdAndFileName/"+curriculaId+"/"+teacherId+"/"+homeworkFileName).then((res)=>{
+                        if(res.data.msg=="删除成功"){
+                            this.$message.success("删除成功")
+                            location.reload();
+                        }else {
+                            this.$message.error("删除失败")
+                        }
+                    });
+                }
+
+            }
+        })
+
+    </script>
 </html>
