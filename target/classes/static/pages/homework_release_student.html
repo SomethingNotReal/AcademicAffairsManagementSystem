@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Tables - SB Admin</title>
+        <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
+        <link href="../css/styles.css" rel="stylesheet" />
+        <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="../plugins/elementui/index.css">
+        <link rel="stylesheet" href="../plugins/font-awesome/css/font-awesome.min.css">
+        <link rel="stylesheet" href="../css/style.css">
+        <script src="../js/vue.js"></script>
+        <script src="../js/axios-0.18.0.js"></script>
+        <script src="../plugins/elementui/index.js"></script>
+        <script type="text/javascript" src="../js/jquery.min.js"></script>
+    </head>
+    <body class="sb-nav-fixed">
+    <div id="app">
+        <!-- 新增标签弹层 -->
+
+        <div class="add-form">
+            <form action="/files/submitHomework" enctype="multipart/form-data" method="post">
+
+                <el-dialog title="提交作业" :visible.sync="dialogFormVisible">
+                    <form action="/files/submitHomework" enctype="multipart/form-data" method="post">
+                        <input type="file" name="file">
+                        <input type="submit" value="上传" @click="submitHomework()">
+                    </form>
+                </el-dialog>
+            </form>
+
+        </div>
+        <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+            <!-- Navbar Brand-->
+            <a class="navbar-brand ps-3" href="index.html">Start Bootstrap</a>
+            <!-- Sidebar Toggle-->
+            <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
+            <!-- Navbar Search-->
+            <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
+                <div class="input-group">
+                    <input v-model="id" class="form-control" type="text" placeholder="输入学生Id搜索..." aria-label="Search for..." aria-describedby="btnNavbarSearch" />
+                    <button @click="search()" class="btn btn-primary" id="btnNavbarSearch" type="button"><i class="fas fa-search"></i></button>
+                </div>
+            </form>
+            <!-- Navbar-->
+            <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="#!">姓名:{{studentName}}</a></li>
+                        <li><a class="dropdown-item" href="#!">学号：{{studentId}}</a></li>
+                        <li><a class="dropdown-item" href="#!">Logout</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+        <div id="layoutSidenav">
+            <div id="layoutSidenav_nav">
+                <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+                    <div class="sb-sidenav-menu">
+                        <div class="nav">
+                            <div class="sb-sidenav-menu-heading">Core</div>
+                            <a class="nav-link" href="home_student.html">
+                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                                回到主页
+                            </a>
+                            <div class="sb-sidenav-menu-heading">Interface</div>
+                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+                                <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                                课程
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                            </a>
+                            <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav">
+                                    <a class="nav-link" href="my_curricula.html">查看我的课程</a>
+                                    <a class="nav-link" href="select_curricula.html">查看选修课</a>
+                                </nav>
+                            </div>
+                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
+                                <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
+                                成绩与考试
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                            </a>
+                            <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
+                                    <a class="nav-link" href="achievement.html">查看成绩</a>
+                                    <a class="nav-link" href="exam.html">查看考试安排</a>
+
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="sb-sidenav-footer">
+                        <div class="small">Logged in as:</div>
+                        Start Bootstrap
+                    </div>
+                </nav>
+            </div>
+            <div id="layoutSidenav_content">
+                <main>
+                    <div class="container-fluid px-4">
+                        <h1 class="mt-4">{{curriculaName}}发布的作业</h1>
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                <i class="fas fa-table me-1"></i>
+                                DataTable Example
+                            </div>
+                            <div class="card-body">
+                                <table id="datatablesSimple">
+                                    <thead>
+                                        <tr>
+                                            <th>作业详情</th>
+                                            <th>我提交的作业</th>
+                                            <th>状态</th>
+                                            <th>截止时间</th>
+                                            <th>操作</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr >
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                        <tr v-for="(item,index) in homeworkRelease ">
+                                            <td><a href="#" @click="getHomeworkReleaseFile(item.releaseName)">{{item.releaseName}}</a></td>
+                                            <td><a href="#" @click="getHomeworkSubmitFile(item.name)">{{item.name}}</a></td>
+                                            <td>{{item.state}}</td>
+                                            <td>{{item.endTime}}</td>
+                                            <td><el-button type="primary" size="mini" @click="handleSubmitHomework(item.curriculaId,item.curriculaName,item.teacherId,item.teacherName)">提交作业</el-button></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+                <footer class="py-4 bg-light mt-auto">
+                    <div class="container-fluid px-4">
+                        <div class="d-flex align-items-center justify-content-between small">
+                            <div class="text-muted">Copyright &copy; Your Website 2022</div>
+                            <div>
+                                <a href="#">Privacy Policy</a>
+                                &middot;
+                                <a href="#">Terms &amp; Conditions</a>
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+            </div>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+        <script src="../js/scripts.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
+        <script src="../js/datatables-simple-demo.js"></script>
+
+    </div>
+    </body>
+    <script>
+
+        var app=new Vue({
+            el:"#app",
+            data:{
+                studentId:null,
+                studentName:null,
+                homeworkRelease:null,
+                curriculaName:null,
+                homework: {},
+                dialogFormVisible:false,
+                url:null
+
+            },
+            created() {
+                const student=localStorage.getItem("studentInfo");
+                this.studentId=JSON.parse(student).studentId;
+                this.studentName=JSON.parse(student).name;
+                const  that=this;
+                const curriculaId=window.sessionStorage.getItem("curriculaId");
+                axios.get("http://localhost/homeworkSubmits/getReleaseHomeworkByCurriculaIdAndStudentId/"+curriculaId+"/"+that.studentId).then((res)=>{
+                    that.homeworkRelease=res.data.data;
+                    console.log("数据时："+JSON.stringify(that.homeworkRelease));
+                    that.curriculaName=res.data.data[0].curriculaName;
+                });
+            },
+            methods:{
+
+                cancel(){
+                    this.dialogFormVisible = false;
+                    this.$message.info("当前操作取消");
+                },
+                getHomeworkReleaseFile(homeworkFileName){
+                    window.open("http://localhost/files/downloadHomeworkRelease/"+homeworkFileName)
+
+                },
+                getHomeworkSubmitFile(name){
+                    window.open("http://localhost/files/downloadHomeworkSubmit/"+name)
+
+                },
+                handleSubmitHomework(curriculaId,curriculaName,teacherId,teacherName){
+                    this.homework.studentId=this.studentId;
+                    this.homework.studentName=this.studentName;
+                    this.homework.teacherId=teacherId;
+                    this.homework.teacherName=teacherName
+                    this.homework.curriculaId=curriculaId;
+                    this.homework.curriculaName=curriculaName;
+                    this.dialogFormVisible = true;
+                },
+                submitHomework(){
+                    const that=this;
+                    axios.post("http://localhost/files/submitHomeworkInDataBase",this.homework).then((res)=>{
+                        if(res.data.msg=="作业发布成功"){
+                            this.$message.success("作业发布成功");
+                            this.dialogFormVisible = false;
+                        }else {
+                            this.$message.error("作业发布失败");
+                            this.dialogFormVisible = false;
+                        }
+
+                    });
+                },
+
+
+            }
+        })
+
+    </script>
+</html>

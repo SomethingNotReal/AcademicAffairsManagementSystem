@@ -29,9 +29,8 @@ public class FileController {
     HomeworkSubmitService homeworkSubmitService;
     String homeworkFileName =null;
     String submitFileName=null;
-
-    private String homeWorkReleasePath ="C:"+File.separator+"Users"+File.separator+"23605"+File.separator+"Documents"+File.separator+"springboot_upload"+File.separator+"AcademicAffairsManagementSystem"+File.separator+"HomeworkRelease";
-    private String homeWorkSubmitPath ="C:"+File.separator+"Users"+File.separator+"23605"+File.separator+"Documents"+File.separator+"springboot_upload"+File.separator+"AcademicAffairsManagementSystem"+File.separator+"HomeworkSubmit";
+    private String homeWorkReleasePath=null;
+    private String homeWorkSubmitPath =null;
 
     @ResponseBody
     @PostMapping("/addHomework")
@@ -44,6 +43,15 @@ public class FileController {
         // 文件名
         String fileName = file.getOriginalFilename();
         String suffixName = fileName.substring(fileName.lastIndexOf("."));
+        String osName = System.getProperty("os.name");
+        System.out.println(osName);
+        if (osName.startsWith("Mac OS")) {
+            // 苹果
+        } else if (osName.startsWith("Windows")) {
+            homeWorkReleasePath ="C:"+File.separator+"Users"+File.separator+"23605"+File.separator+"Documents"+File.separator+"springboot_upload"+File.separator+"AcademicAffairsManagementSystem"+File.separator+"HomeworkRelease";
+        } else {
+            homeWorkReleasePath =File.separator+"home"+File.separator+"imagine"+File.separator+"文档"+File.separator+"SpringBootUpload"+File.separator+"AcademicAffairsManagementSystem"+File.separator+"HomeworkRelease";
+        }
         File fileHomeworkRelease = new File(homeWorkReleasePath + "/" + fileName);
         homeworkFileName =fileName;
         // 检测目录是否存在
@@ -79,6 +87,15 @@ public class FileController {
         // 文件名
         String fileName = file.getOriginalFilename();
         String suffixName = fileName.substring(fileName.lastIndexOf("."));
+        String osName = System.getProperty("os.name");
+        System.out.println(osName);
+        if (osName.startsWith("Mac OS")) {
+            // 苹果
+        } else if (osName.startsWith("Windows")) {
+            homeWorkSubmitPath ="C:"+File.separator+"Users"+File.separator+"23605"+File.separator+"Documents"+File.separator+"springboot_upload"+File.separator+"AcademicAffairsManagementSystem"+File.separator+"HomeworkSubmit";
+        } else {
+            homeWorkSubmitPath=File.separator+"home"+File.separator+"imagine"+File.separator+"文档"+File.separator+"SpringBootUpload"+File.separator+"AcademicAffairsManagementSystem"+File.separator+"HomeworkSubmit";
+        }
         File fileHomeworkRelease = new File(homeWorkSubmitPath + "/" + fileName);
         submitFileName =fileName;
         // 检测目录是否存在
