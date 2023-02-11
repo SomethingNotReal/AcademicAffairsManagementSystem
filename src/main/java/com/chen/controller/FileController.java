@@ -44,7 +44,6 @@ public class FileController {
         String fileName = file.getOriginalFilename();
         String suffixName = fileName.substring(fileName.lastIndexOf("."));
         String osName = System.getProperty("os.name");
-        System.out.println(osName);
         if (osName.startsWith("Mac OS")) {
             // 苹果
         } else if (osName.startsWith("Windows")) {
@@ -88,7 +87,6 @@ public class FileController {
         String fileName = file.getOriginalFilename();
         String suffixName = fileName.substring(fileName.lastIndexOf("."));
         String osName = System.getProperty("os.name");
-        System.out.println(osName);
         if (osName.startsWith("Mac OS")) {
             // 苹果
         } else if (osName.startsWith("Windows")) {
