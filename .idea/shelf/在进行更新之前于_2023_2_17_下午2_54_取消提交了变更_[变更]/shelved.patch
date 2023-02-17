@@ -1,0 +1,85 @@
+Index: src/main/resources/application.yml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>server:\n  port: 80\n\nspring:\n  datasource:\n    druid:\n      driver-class-name: com.mysql.cj.jdbc.Driver\n      url: jdbc:mysql://localhost:3306/academic_affairs_management_system_db?serverTimezone=UTC\n      username: root\n      password: root\n  servlet:\n    multipart:\n      max-file-size: 20MB\n      max-request-size: 20MB\nmybatis-plus:\n  global-config:\n    db-config:\n      id-type: input\n\n  configuration:\n    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/resources/application.yml b/src/main/resources/application.yml
+--- a/src/main/resources/application.yml	(revision 4f5f72b09e19c083296d74f2ae9933371a061ec4)
++++ b/src/main/resources/application.yml	(date 1676338320865)
+@@ -7,7 +7,7 @@
+       driver-class-name: com.mysql.cj.jdbc.Driver
+       url: jdbc:mysql://localhost:3306/academic_affairs_management_system_db?serverTimezone=UTC
+       username: root
+-      password: root
++      password: Chen20315..
+   servlet:
+     multipart:
+       max-file-size: 20MB
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project version=\"4\">\n  <component name=\"AutoImportSettings\">\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\n  </component>\n  <component name=\"ChangeListManager\">\n    <list default=\"true\" id=\"89b0ea98-b2de-4bcb-8ec0-98af79908c52\" name=\"变更\" comment=\"优化代码\">\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\n    </list>\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\n  </component>\n  <component name=\"Git.Settings\">\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\n  </component>\n  <component name=\"MarkdownSettingsMigration\">\n    <option name=\"stateVersion\" value=\"1\" />\n  </component>\n  <component name=\"MavenImportPreferences\">\n    <option name=\"generalSettings\">\n      <MavenGeneralSettings>\n        <option name=\"mavenHome\" value=\"$USER_HOME$/Program Files/apache-maven-3.6.1\" />\n        <option name=\"useMavenConfig\" value=\"true\" />\n        <option name=\"userSettingsFile\" value=\"$USER_HOME$/Program Files/apache-maven-3.6.1/conf/settings.xml\" />\n      </MavenGeneralSettings>\n    </option>\n  </component>\n  <component name=\"MavenRunner\">\n    <option name=\"skipTests\" value=\"true\" />\n  </component>\n  <component name=\"ProjectId\" id=\"2LbIEmQglmW7GoLX58p0AxRo3QP\" />\n  <component name=\"ProjectViewState\">\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\n    <option name=\"showLibraryContents\" value=\"true\" />\n  </component>\n  <component name=\"PropertiesComponent\">{\n  &quot;keyToString&quot;: {\n    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,\n    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,\n    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,\n    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,\n    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,\n    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,\n    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,\n    &quot;last_opened_file_path&quot;: &quot;/home/imagine/IdeaProjects/AcademicAffairsManagementSystem&quot;,\n    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,\n    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,\n    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,\n    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,\n    &quot;settings.editor.selected.configurable&quot;: &quot;MavenSettings&quot;,\n    &quot;spring.configuration.checksum&quot;: &quot;3d6ec0419180a9ab3226535a3851577d&quot;,\n    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;\n  }\n}</component>\n  <component name=\"RunManager\">\n    <configuration name=\"SSMPApplication\" type=\"SpringBootApplicationConfigurationType\" factoryName=\"Spring Boot\" nameIsGenerated=\"true\">\n      <module name=\"AcademicAffairsManagementSystem\" />\n      <option name=\"SPRING_BOOT_MAIN_CLASS\" value=\"com.chen.SSMPApplication\" />\n      <method v=\"2\">\n        <option name=\"Make\" enabled=\"true\" />\n      </method>\n    </configuration>\n  </component>\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"应用程序级\" UseSingleDictionary=\"true\" transferred=\"true\" />\n  <component name=\"TaskManager\">\n    <task active=\"true\" id=\"Default\" summary=\"默认任务\">\n      <changelist id=\"89b0ea98-b2de-4bcb-8ec0-98af79908c52\" name=\"变更\" comment=\"\" />\n      <created>1676133245310</created>\n      <option name=\"number\" value=\"Default\" />\n      <option name=\"presentableId\" value=\"Default\" />\n      <updated>1676133245310</updated>\n      <workItem from=\"1676133246639\" duration=\"89000\" />\n      <workItem from=\"1676133403362\" duration=\"395000\" />\n      <workItem from=\"1676164760804\" duration=\"480000\" />\n      <workItem from=\"1676165394183\" duration=\"330000\" />\n      <workItem from=\"1676166140560\" duration=\"434000\" />\n      <workItem from=\"1676166693030\" duration=\"740000\" />\n      <workItem from=\"1676217041447\" duration=\"1205000\" />\n      <workItem from=\"1676218326412\" duration=\"63000\" />\n      <workItem from=\"1676258927746\" duration=\"176000\" />\n    </task>\n    <task id=\"LOCAL-00001\" summary=\"优化\">\n      <created>1676133441581</created>\n      <option name=\"number\" value=\"00001\" />\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1676133441581</updated>\n    </task>\n    <task id=\"LOCAL-00002\" summary=\"优化\">\n      <created>1676165530908</created>\n      <option name=\"number\" value=\"00002\" />\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1676165530908</updated>\n    </task>\n    <task id=\"LOCAL-00003\" summary=\"优化\">\n      <created>1676166182690</created>\n      <option name=\"number\" value=\"00003\" />\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1676166182690</updated>\n    </task>\n    <task id=\"LOCAL-00004\" summary=\"优化\">\n      <created>1676166760188</created>\n      <option name=\"number\" value=\"00004\" />\n      <option name=\"presentableId\" value=\"LOCAL-00004\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1676166760188</updated>\n    </task>\n    <task id=\"LOCAL-00005\" summary=\"优化代码\">\n      <created>1676217953663</created>\n      <option name=\"number\" value=\"00005\" />\n      <option name=\"presentableId\" value=\"LOCAL-00005\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1676217953663</updated>\n    </task>\n    <task id=\"LOCAL-00006\" summary=\"优化代码\">\n      <created>1676218347377</created>\n      <option name=\"number\" value=\"00006\" />\n      <option name=\"presentableId\" value=\"LOCAL-00006\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1676218347377</updated>\n    </task>\n    <option name=\"localTasksCounter\" value=\"7\" />\n    <servers />\n  </component>\n  <component name=\"TypeScriptGeneratedFilesManager\">\n    <option name=\"version\" value=\"3\" />\n  </component>\n  <component name=\"Vcs.Log.Tabs.Properties\">\n    <option name=\"TAB_STATES\">\n      <map>\n        <entry key=\"MAIN\">\n          <value>\n            <State />\n          </value>\n        </entry>\n      </map>\n    </option>\n  </component>\n  <component name=\"VcsManagerConfiguration\">\n    <MESSAGE value=\"优化\" />\n    <MESSAGE value=\"优化代码\" />\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"优化代码\" />\n  </component>\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 4f5f72b09e19c083296d74f2ae9933371a061ec4)
++++ b/.idea/workspace.xml	(date 1676338456073)
+@@ -4,8 +4,9 @@
+     <option name="autoReloadType" value="SELECTIVE" />
+   </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="89b0ea98-b2de-4bcb-8ec0-98af79908c52" name="变更" comment="优化代码">
++    <list default="true" id="89b0ea98-b2de-4bcb-8ec0-98af79908c52" name="变更" comment="优化代码-2-13">
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -49,7 +50,7 @@
+     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+-    &quot;settings.editor.selected.configurable&quot;: &quot;MavenSettings&quot;,
++    &quot;settings.editor.selected.configurable&quot;: &quot;settings.sync&quot;,
+     &quot;spring.configuration.checksum&quot;: &quot;3d6ec0419180a9ab3226535a3851577d&quot;,
+     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+   }
+@@ -80,6 +81,9 @@
+       <workItem from="1676217041447" duration="1205000" />
+       <workItem from="1676218326412" duration="63000" />
+       <workItem from="1676258927746" duration="176000" />
++      <workItem from="1676301733462" duration="71000" />
++      <workItem from="1676301813448" duration="587000" />
++      <workItem from="1676338122430" duration="334000" />
+     </task>
+     <task id="LOCAL-00001" summary="优化">
+       <created>1676133441581</created>
+@@ -123,7 +127,14 @@
+       <option name="project" value="LOCAL" />
+       <updated>1676218347377</updated>
+     </task>
+-    <option name="localTasksCounter" value="7" />
++    <task id="LOCAL-00007" summary="优化代码-2-13">
++      <created>1676301783129</created>
++      <option name="number" value="00007" />
++      <option name="presentableId" value="LOCAL-00007" />
++      <option name="project" value="LOCAL" />
++      <updated>1676301783129</updated>
++    </task>
++    <option name="localTasksCounter" value="8" />
+     <servers />
+   </component>
+   <component name="TypeScriptGeneratedFilesManager">
+@@ -143,6 +154,7 @@
+   <component name="VcsManagerConfiguration">
+     <MESSAGE value="优化" />
+     <MESSAGE value="优化代码" />
+-    <option name="LAST_COMMIT_MESSAGE" value="优化代码" />
++    <MESSAGE value="优化代码-2-13" />
++    <option name="LAST_COMMIT_MESSAGE" value="优化代码-2-13" />
+   </component>
+ </project>
+\ No newline at end of file
