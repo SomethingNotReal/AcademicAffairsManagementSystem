@@ -133,7 +133,7 @@
                                             <td><a href="#" @click="getHomeworkSubmitFile(item.name)">{{item.name}}</a></td>
                                             <td>{{item.state}}</td>
                                             <td>{{item.endTime}}</td>
-                                            <td><el-button type="primary" size="mini" @click="handleSubmitHomework(item.curriculaId,item.curriculaName,item.teacherId,item.teacherName)">提交作业</el-button></td>
+                                            <td><el-button type="primary" size="mini" @click="handleSubmitHomework(item.curriculaId,item.curriculaName,item.teacherId,item.teacherName,item.releaseName)">提交作业</el-button></td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -202,13 +202,14 @@
                     window.open("http://localhost/files/downloadHomeworkSubmit/"+name)
 
                 },
-                handleSubmitHomework(curriculaId,curriculaName,teacherId,teacherName){
+                handleSubmitHomework(curriculaId,curriculaName,teacherId,teacherName,releaseName){
                     this.homework.studentId=this.studentId;
                     this.homework.studentName=this.studentName;
                     this.homework.teacherId=teacherId;
                     this.homework.teacherName=teacherName
                     this.homework.curriculaId=curriculaId;
                     this.homework.curriculaName=curriculaName;
+                    this.homework.releaseName=releaseName;
                     this.dialogFormVisible = true;
                 },
                 submitHomework(){

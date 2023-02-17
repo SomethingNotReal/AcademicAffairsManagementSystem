@@ -20,6 +20,6 @@ public interface HomeworkSubmitDao extends BaseMapper<HomeworkSubmit> {
 
     @Delete("delete from homework_submit where curricula_id=#{curriculaId} and teacher_id=#{teacherId} and release_name=#{releaseName}")
     Integer deleteSubmitHomeworkByCurriculaIdAndTeacherIdAndFileName(String curriculaId,String teacherId,String releaseName);
-    @Update("update homework_submit set name=#{name}, state=#{state} where student_id=#{studentId} and curricula_id=#{curriculaId} and teacher_id=#{teacherId}")
+    @Update("update homework_submit set name=#{name}, state=#{state} where student_id=#{studentId} and curricula_id=#{curriculaId} and teacher_id=#{teacherId} and release_name=#{releaseName}")
     Integer updateStudentIdAndCurriculaIdAndTeacherId(HomeworkSubmit homeworkSubmit);
 }
