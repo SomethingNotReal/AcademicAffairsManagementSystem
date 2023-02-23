@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="89b0ea98-b2de-4bcb-8ec0-98af79908c52" name="变更" comment="文件Controller优化" />
+    <list default="true" id="89b0ea98-b2de-4bcb-8ec0-98af79908c52" name="变更" comment="workspace更改" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -68,7 +68,7 @@
       <workItem from="1677076651368" duration="151000" />
       <workItem from="1677078700756" duration="137000" />
       <workItem from="1677134174444" duration="113000" />
-      <workItem from="1677134712448" duration="314000" />
+      <workItem from="1677134712448" duration="398000" />
     </task>
     <task id="LOCAL-00001" summary="优化">
       <created>1676133441581</created>
@@ -105,7 +105,14 @@
       <option name="project" value="LOCAL" />
       <updated>1677134973749</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="workspace更改">
+      <created>1677135092075</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1677135092075</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -125,8 +132,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="优化" />
     <MESSAGE value="修复提交作业bug" />
-    <MESSAGE value="workspace更改" />
     <MESSAGE value="文件Controller优化" />
-    <option name="LAST_COMMIT_MESSAGE" value="文件Controller优化" />
+    <MESSAGE value="workspace更改" />
+    <option name="LAST_COMMIT_MESSAGE" value="workspace更改" />
   </component>
 </project>
