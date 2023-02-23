@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="89b0ea98-b2de-4bcb-8ec0-98af79908c52" name="变更" comment="修复提交作业bug">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="89b0ea98-b2de-4bcb-8ec0-98af79908c52" name="变更" comment="文件Controller优化" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -17,6 +15,9 @@
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
+  </component>
+  <component name="MavenRunner">
+    <option name="skipTests" value="true" />
   </component>
   <component name="ProjectId" id="2LbIEmQglmW7GoLX58p0AxRo3QP" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -67,6 +68,7 @@
       <workItem from="1677076651368" duration="151000" />
       <workItem from="1677078700756" duration="137000" />
       <workItem from="1677134174444" duration="113000" />
+      <workItem from="1677134712448" duration="314000" />
     </task>
     <task id="LOCAL-00001" summary="优化">
       <created>1676133441581</created>
@@ -89,7 +91,21 @@
       <option name="project" value="LOCAL" />
       <updated>1676638005402</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="workspace更改">
+      <created>1677134757681</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1677134757681</updated>
+    </task>
+    <task id="LOCAL-00005" summary="文件Controller优化">
+      <created>1677134973749</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1677134973749</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -109,6 +125,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="优化" />
     <MESSAGE value="修复提交作业bug" />
-    <option name="LAST_COMMIT_MESSAGE" value="修复提交作业bug" />
+    <MESSAGE value="workspace更改" />
+    <MESSAGE value="文件Controller优化" />
+    <option name="LAST_COMMIT_MESSAGE" value="文件Controller优化" />
   </component>
 </project>
