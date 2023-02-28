@@ -45,7 +45,7 @@ public class FileController {
         String suffixName = fileName.substring(fileName.lastIndexOf("."));
         String osName = System.getProperty("os.name");
         if (osName.startsWith("Mac OS")) {
-            // 苹果
+            homeWorkReleasePath ="/users/imagine/documents/springboot_upload/HomeworkRelease";
         } else if (osName.startsWith("Windows")) {
             homeWorkReleasePath ="C:"+File.separator+"Users"+File.separator+"23605"+File.separator+"Documents"+File.separator+"springboot_upload"+File.separator+"AcademicAffairsManagementSystem"+File.separator+"HomeworkRelease";
         } else {
@@ -88,7 +88,7 @@ public class FileController {
         String suffixName = fileName.substring(fileName.lastIndexOf("."));
         String osName = System.getProperty("os.name");
         if (osName.startsWith("Mac OS")) {
-
+            homeWorkSubmitPath ="/users/imagine/documents/springboot_upload/HomeworkSubmit";
         } else if (osName.startsWith("Windows")) {
             homeWorkSubmitPath ="C:"+File.separator+"Users"+File.separator+"23605"+File.separator+"Documents"+File.separator+"springboot_upload"+File.separator+"AcademicAffairsManagementSystem"+File.separator+"HomeworkSubmit";
         } else {
