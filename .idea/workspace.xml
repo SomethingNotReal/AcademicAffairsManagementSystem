@@ -4,15 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="89b0ea98-b2de-4bcb-8ec0-98af79908c52" name="变更" comment="workspace更改">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/42084b66-7344-408d-9fb2-74e73072f9e6.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/42084b66-7344-408d-9fb2-74e73072f9e6.xml" afterDir="false" />
+    <list default="true" id="89b0ea98-b2de-4bcb-8ec0-98af79908c52" name="变更" comment="修复删除学生bug">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/chen/controller/AdministratorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/chen/controller/AdministratorController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/chen/dao/AchievementDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/chen/dao/AchievementDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/chen/service/AchievementService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/chen/service/AchievementService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/chen/service/impl/AchievementServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/chen/service/impl/AchievementServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -88,7 +81,7 @@
       <workItem from="1678064213767" duration="71000" />
       <workItem from="1678066924715" duration="55000" />
       <workItem from="1678150844516" duration="495000" />
-      <workItem from="1678152142468" duration="871000" />
+      <workItem from="1678152142468" duration="1406000" />
     </task>
     <task id="LOCAL-00001" summary="优化">
       <created>1676133441581</created>
@@ -139,7 +132,14 @@
       <option name="project" value="LOCAL" />
       <updated>1677135146592</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="修复删除学生bug">
+      <created>1678153263658</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1678153263658</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -161,6 +161,7 @@
     <MESSAGE value="修复提交作业bug" />
     <MESSAGE value="文件Controller优化" />
     <MESSAGE value="workspace更改" />
-    <option name="LAST_COMMIT_MESSAGE" value="workspace更改" />
+    <MESSAGE value="修复删除学生bug" />
+    <option name="LAST_COMMIT_MESSAGE" value="修复删除学生bug" />
   </component>
 </project>

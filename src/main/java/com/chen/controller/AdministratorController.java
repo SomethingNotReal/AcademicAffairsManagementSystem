@@ -272,6 +272,7 @@ public class AdministratorController {
     public Resource deleteStudent(@PathVariable String studentId){
         studentService.removeStudentById(studentId);
         achievementService.removeByStudentId(studentId);
+        courseSelectionService.removeByStudentId(studentId);
         return new Resource(true,"删除成功");
 
     }
@@ -295,7 +296,7 @@ public class AdministratorController {
             achievementService.removeByCurriculaId(curriculaId);
         }
         if(courseSelectionService.getByCurriculaId(curriculaId)!=null){
-            courseSelectionService.deleteByCurriculaId(curriculaId);
+            courseSelectionService.removeByCurriculaId(curriculaId);
         }
         return new Resource(true,"删除成功");
     }
