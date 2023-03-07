@@ -271,6 +271,7 @@ public class AdministratorController {
     @DeleteMapping("/deleteStudent/{studentId}")
     public Resource deleteStudent(@PathVariable String studentId){
         studentService.removeStudentById(studentId);
+        achievementService.removeByStudentId(studentId);
         return new Resource(true,"删除成功");
 
     }
@@ -279,7 +280,7 @@ public class AdministratorController {
     public Resource deleteCurricula(@PathVariable String curriculaId){
         curriculaService.deleteCurriculaById(curriculaId);
         if(achievementService.getByCurriculaId(curriculaId)!=null){
-            achievementService.deleteByCurriculaId(curriculaId);
+            achievementService.removeByCurriculaId(curriculaId);
         }
         if (setCurriculaService.getByCurriculaId(curriculaId)!=null){
             setCurriculaService.deleteByCurriculaId(curriculaId);
@@ -291,7 +292,7 @@ public class AdministratorController {
     public Resource deleteElectiveCurricula(@PathVariable String curriculaId){
         electiveCurriculaService.deleteCurriculaById(curriculaId);
         if(achievementService.getByCurriculaId(curriculaId)!=null){
-            achievementService.deleteByCurriculaId(curriculaId);
+            achievementService.removeByCurriculaId(curriculaId);
         }
         if(courseSelectionService.getByCurriculaId(curriculaId)!=null){
             courseSelectionService.deleteByCurriculaId(curriculaId);

@@ -2,6 +2,7 @@ package com.chen.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.chen.domain.Achievement;
+import org.apache.ibatis.annotations.Delete;
 
 import java.util.List;
 
@@ -14,5 +15,7 @@ public interface AchievementService extends IService<Achievement> {
     List<Achievement> getByCurriculaId(String curriculaId);
 
     List<Achievement> getByStudentIdAndCurriculaId(String curriculaId,String studentId);
-    Integer deleteByCurriculaId(String curriculaId);
+    Integer removeByCurriculaId(String curriculaId);
+
+    Integer removeByStudentId(String studentId);
 }

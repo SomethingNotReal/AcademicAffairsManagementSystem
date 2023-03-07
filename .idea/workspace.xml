@@ -4,9 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="89b0ea98-b2de-4bcb-8ec0-98af79908c52" name="变更" comment="yml更改">
+    <list default="true" id="89b0ea98-b2de-4bcb-8ec0-98af79908c52" name="变更" comment="workspace更改">
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/42084b66-7344-408d-9fb2-74e73072f9e6.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/42084b66-7344-408d-9fb2-74e73072f9e6.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/chen/controller/FileController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/chen/controller/FileController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/chen/controller/AdministratorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/chen/controller/AdministratorController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/chen/dao/AchievementDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/chen/dao/AchievementDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/chen/service/AchievementService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/chen/service/AchievementService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/chen/service/impl/AchievementServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/chen/service/impl/AchievementServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,9 +27,6 @@
   </component>
   <component name="MavenRunner">
     <option name="skipTests" value="true" />
-  </component>
-  <component name="ProblemsViewState">
-    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectId" id="2LbIEmQglmW7GoLX58p0AxRo3QP" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -42,40 +45,21 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/imagine/IdeaProjects/AcademicAffairsManagementSystem&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/23605/IdeaProjects/AcademicAffairsManagementSystem/src/main/resources/static/pages&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;profiler.jvm&quot;,
     &quot;spring.configuration.checksum&quot;: &quot;3d6ec0419180a9ab3226535a3851577d&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
-  },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;mysql&quot;
-    ]
   }
 }</component>
-  <component name="RunDashboard">
-    <option name="configurationTypes">
-      <set>
-        <option value="MavenRunConfiguration" />
-      </set>
-    </option>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\23605\IdeaProjects\AcademicAffairsManagementSystem\src\main\resources\static\pages" />
+    </key>
   </component>
   <component name="RunManager">
-    <configuration default="true" type="JetRunConfigurationType">
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
-      <option name="filePath" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="SSMPApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="AcademicAffairsManagementSystem" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.chen.SSMPApplication" />
@@ -100,13 +84,11 @@
       <workItem from="1677134174444" duration="113000" />
       <workItem from="1677134712448" duration="398000" />
       <workItem from="1677135127158" duration="167000" />
-      <workItem from="1677391912838" duration="1631000" />
-      <workItem from="1677393550418" duration="722000" />
-      <workItem from="1677401347401" duration="485000" />
-      <workItem from="1677401861380" duration="165000" />
-      <workItem from="1677507561821" duration="22000" />
-      <workItem from="1677511808567" duration="95000" />
-      <workItem from="1677550890119" duration="989000" />
+      <workItem from="1677554173618" duration="17000" />
+      <workItem from="1678064213767" duration="71000" />
+      <workItem from="1678066924715" duration="55000" />
+      <workItem from="1678150844516" duration="495000" />
+      <workItem from="1678152142468" duration="871000" />
     </task>
     <task id="LOCAL-00001" summary="优化">
       <created>1676133441581</created>
@@ -157,35 +139,7 @@
       <option name="project" value="LOCAL" />
       <updated>1677135146592</updated>
     </task>
-    <task id="LOCAL-00008" summary="yml更改">
-      <created>1677401442353</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1677401442353</updated>
-    </task>
-    <task id="LOCAL-00009" summary="yml更改">
-      <created>1677401549890</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1677401549890</updated>
-    </task>
-    <task id="LOCAL-00010" summary="yml更改">
-      <created>1677401821108</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1677401821108</updated>
-    </task>
-    <task id="LOCAL-00011" summary="yml更改">
-      <created>1677401878462</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1677401878462</updated>
-    </task>
-    <option name="localTasksCounter" value="12" />
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -207,7 +161,6 @@
     <MESSAGE value="修复提交作业bug" />
     <MESSAGE value="文件Controller优化" />
     <MESSAGE value="workspace更改" />
-    <MESSAGE value="yml更改" />
-    <option name="LAST_COMMIT_MESSAGE" value="yml更改" />
+    <option name="LAST_COMMIT_MESSAGE" value="workspace更改" />
   </component>
 </project>

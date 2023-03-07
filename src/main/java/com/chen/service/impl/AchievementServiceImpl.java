@@ -44,7 +44,12 @@ public class AchievementServiceImpl extends ServiceImpl<AchievementDao, Achievem
     }
 
     @Override
-    public Integer deleteByCurriculaId(String curriculaId) {
+    public Integer removeByCurriculaId(String curriculaId) {
         return achievementDao.deleteByCurriculaId(curriculaId);
+    }
+
+    @Override
+    public Integer removeByStudentId(String studentId) {
+        return achievementDao.deleteByStudentId(studentId);
     }
 }
