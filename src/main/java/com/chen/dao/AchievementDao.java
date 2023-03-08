@@ -30,5 +30,7 @@ public interface AchievementDao extends BaseMapper<Achievement> {
 
     @Delete("delete from achievement where curricula_id=#{curriculaId}")
     Integer deleteByCurriculaId(String curriculaId);
+    @Delete("delete from achievement where student_id=#{studentId}")
+    Integer deleteByStudentId(String studentId);
 
 }

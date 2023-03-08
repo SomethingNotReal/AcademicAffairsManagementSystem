@@ -29,7 +29,12 @@ public class CourseSelectionServiceImpl extends ServiceImpl<CourseSelectionDao, 
     }
 
     @Override
-    public Integer deleteByCurriculaId(String curriculaId) {
+    public Integer removeByStudentId(String studentId) {
+        return courseSelectionDao.deleteByStudentId(studentId);
+    }
+
+    @Override
+    public Integer removeByCurriculaId(String curriculaId) {
         return courseSelectionDao.deleteByCurriculaId(curriculaId);
     }
 }
