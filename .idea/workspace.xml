@@ -4,11 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="89b0ea98-b2de-4bcb-8ec0-98af79908c52" name="变更" comment="修复删除学生bug">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/42084b66-7344-408d-9fb2-74e73072f9e6.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/42084b66-7344-408d-9fb2-74e73072f9e6.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/_2023_3_8__3_03_PM____.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/在进行更新之前于_2023_3_8,_3_03_PM_取消提交了变更_[变更]/shelved.patch" beforeDir="false" />
+    <list default="true" id="89b0ea98-b2de-4bcb-8ec0-98af79908c52" name="变更" comment="添加mac文件系统路径">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -24,6 +20,9 @@
   </component>
   <component name="MavenRunner">
     <option name="skipTests" value="true" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectId" id="2LbIEmQglmW7GoLX58p0AxRo3QP" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -42,21 +41,43 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/23605/IdeaProjects/AcademicAffairsManagementSystem&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/imagine/IdeaProjects/AcademicAffairsManagementSystem&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;项目&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
     &quot;spring.configuration.checksum&quot;: &quot;3d6ec0419180a9ab3226535a3851577d&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  },
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;mysql&quot;
+    ]
   }
 }</component>
-  <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\23605\IdeaProjects\AcademicAffairsManagementSystem\src\main\resources\static\pages" />
-    </key>
+  <component name="RunDashboard">
+    <option name="configurationTypes">
+      <set>
+        <option value="MavenRunConfiguration" />
+      </set>
+    </option>
   </component>
   <component name="RunManager">
+    <configuration default="true" type="JetRunConfigurationType">
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <option name="filePath" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="SSMPApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="AcademicAffairsManagementSystem" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.chen.SSMPApplication" />
@@ -81,17 +102,24 @@
       <workItem from="1677134174444" duration="113000" />
       <workItem from="1677134712448" duration="398000" />
       <workItem from="1677135127158" duration="167000" />
-      <workItem from="1677554173618" duration="17000" />
-      <workItem from="1678064213767" duration="71000" />
-      <workItem from="1678066924715" duration="55000" />
-      <workItem from="1678150844516" duration="495000" />
-      <workItem from="1678152142468" duration="1406000" />
-      <workItem from="1678153751516" duration="318000" />
-      <workItem from="1678777769530" duration="13000" />
-      <workItem from="1678778846331" duration="103000" />
-      <workItem from="1679118165804" duration="111000" />
-      <workItem from="1679146784137" duration="95000" />
-      <workItem from="1679191385327" duration="869000" />
+      <workItem from="1677391912838" duration="1631000" />
+      <workItem from="1677393550418" duration="722000" />
+      <workItem from="1677401347401" duration="485000" />
+      <workItem from="1677401861380" duration="165000" />
+      <workItem from="1677507561821" duration="22000" />
+      <workItem from="1677511808567" duration="95000" />
+      <workItem from="1677550890119" duration="989000" />
+      <workItem from="1677553008150" duration="93000" />
+      <workItem from="1677911534913" duration="185000" />
+      <workItem from="1677911736838" duration="185000" />
+      <workItem from="1677912822275" duration="130000" />
+      <workItem from="1677932440318" duration="2285000" />
+      <workItem from="1678324677380" duration="99000" />
+      <workItem from="1678538284234" duration="161000" />
+      <workItem from="1678540482204" duration="450000" />
+      <workItem from="1678541354547" duration="265000" />
+      <workItem from="1678584578406" duration="168000" />
+      <workItem from="1678606480950" duration="56000" />
     </task>
     <task id="LOCAL-00001" summary="优化">
       <created>1676133441581</created>
@@ -142,21 +170,49 @@
       <option name="project" value="LOCAL" />
       <updated>1677135146592</updated>
     </task>
-    <task id="LOCAL-00008" summary="修复删除学生bug">
-      <created>1678153263658</created>
+    <task id="LOCAL-00008" summary="yml更改">
+      <created>1677401442353</created>
       <option name="number" value="00008" />
       <option name="presentableId" value="LOCAL-00008" />
       <option name="project" value="LOCAL" />
-      <updated>1678153263658</updated>
+      <updated>1677401442353</updated>
     </task>
-    <task id="LOCAL-00009" summary="修复删除学生bug">
-      <created>1678154058694</created>
+    <task id="LOCAL-00009" summary="yml更改">
+      <created>1677401549890</created>
       <option name="number" value="00009" />
       <option name="presentableId" value="LOCAL-00009" />
       <option name="project" value="LOCAL" />
-      <updated>1678154058694</updated>
+      <updated>1677401549890</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="yml更改">
+      <created>1677401821108</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1677401821108</updated>
+    </task>
+    <task id="LOCAL-00011" summary="yml更改">
+      <created>1677401878462</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1677401878462</updated>
+    </task>
+    <task id="LOCAL-00012" summary="添加mac文件系统路径">
+      <created>1677553075198</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1677553075199</updated>
+    </task>
+    <task id="LOCAL-00013" summary="添加mac文件系统路径">
+      <created>1678259100575</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1678259100575</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -178,7 +234,12 @@
     <MESSAGE value="修复提交作业bug" />
     <MESSAGE value="文件Controller优化" />
     <MESSAGE value="workspace更改" />
-    <MESSAGE value="修复删除学生bug" />
-    <option name="LAST_COMMIT_MESSAGE" value="修复删除学生bug" />
+    <MESSAGE value="yml更改" />
+    <MESSAGE value="添加mac文件系统路径" />
+    <option name="LAST_COMMIT_MESSAGE" value="添加mac文件系统路径" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>
